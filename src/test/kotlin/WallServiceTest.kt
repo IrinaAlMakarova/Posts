@@ -1,11 +1,18 @@
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.junit.Before
 import ru.netology.Comments
 import ru.netology.Likes
 import ru.netology.Post
+import ru.netology.WallService
 
 class WallServiceTest {
+
+    @Before
+    fun clearBeforeTest() {
+        WallService.clear()
+    }
 
     @Test
     fun update() {

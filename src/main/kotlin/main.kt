@@ -33,6 +33,11 @@ object WallService {
     private var posts = emptyArray<Post>()
     private var recordId: Int = 0
 
+    fun clear() {
+        posts = emptyArray()
+        recordId = 0 // также здесь нужно сбросить счетчик для id постов, если он у вас используется
+    }
+
     fun add(post: Post): Post {
         recordId++
         post.id = recordId
