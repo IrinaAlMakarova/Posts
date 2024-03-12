@@ -9,7 +9,7 @@ data class Post(
     var id: Int,
     val ownerId: Int,
     val fromId: Int,
-    val createdBy: Int,
+    val createdBy: Int, // Nullable
     val date: Int,
     val text: String,
     val replyOwnerId: Int,
@@ -25,8 +25,8 @@ data class Post(
     val markedAsAds: Boolean,
     val isFavorite: Boolean,
     val postponedId: Int,
-    var comments: Comments,
-    var likes: Likes
+    var comments: Comments?, // Nullable
+    var likes: Likes? // Nullable
 )
 
 object WallService {
