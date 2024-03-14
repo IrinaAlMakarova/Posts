@@ -83,6 +83,22 @@ class Video(
     val duration: Int
 )
 
+class File(
+    val id: Int,
+    val owner_id: Int,
+    val title: String,
+    val size: Int,
+    val ext: String
+)
+
+class Link(
+    val url: String,
+    val title: String,
+    val caption: String,
+    val description: String,
+    var photo: Photo
+)
+
 interface Attachment {
     val type: String
 }
@@ -102,6 +118,18 @@ class AudioAttachment(
 class VideoAttachment(
     override val type: String,
     var video: Video
+) : Attachment {
+}
+
+class FileAttachment(
+    override val type: String,
+    var file: File
+) : Attachment {
+}
+
+class LinkAttachment(
+    override val type: String,
+    var link: Link
 ) : Attachment {
 }
 
