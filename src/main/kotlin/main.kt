@@ -9,7 +9,7 @@ data class Post(
     var id: Int,
     val ownerId: Int,
     val fromId: Int,
-    val createdBy: Int,
+    val createdBy: Int, // Nullable
     val date: Int,
     val text: String,
     val replyOwnerId: Int,
@@ -25,8 +25,9 @@ data class Post(
     val markedAsAds: Boolean,
     val isFavorite: Boolean,
     val postponedId: Int,
-    var comments: Comments,
-    var likes: Likes
+    var comments: Comments?, // Nullable
+    var likes: Likes?, // Nullable
+    val attachments: Array<Attachment> = emptyArray()
 )
 
 object WallService {
@@ -57,6 +58,80 @@ object WallService {
     }
 }
 
+
+class Photo(
+    val id: Int,
+    val album_id: Int,
+    val owner_id: Int,
+    val user_id: Int,
+    val text: String
+)
+
+class Audio(
+    val id: Int,
+    val owner_id: Int,
+    val artist: String,
+    val title: String,
+    val duration: Int
+)
+
+class Video(
+    val id: Int,
+    val owner_id: Int,
+    val title: String,
+    val description: String,
+    val duration: Int
+)
+
+class File(
+    val id: Int,
+    val owner_id: Int,
+    val title: String,
+    val size: Int,
+    val ext: String
+)
+
+class Link(
+    val url: String,
+    val title: String,
+    val caption: String,
+    val description: String,
+    var photo: Photo
+)
+
+interface Attachment {
+    val type: String
+}
+
+class PhotoAttachment(
+    override val type: String,
+    var photo: Photo
+) : Attachment {
+}
+
+class AudioAttachment(
+    override val type: String,
+    var audio: Audio
+) : Attachment {
+}
+
+class VideoAttachment(
+    override val type: String,
+    var video: Video
+) : Attachment {
+}
+
+class FileAttachment(
+    override val type: String,
+    var file: File
+) : Attachment {
+}
+
+class LinkAttachment(
+    override val type: String,
+    var link: Link
+) : Attachment {
+}
 
 fun main() {
 
